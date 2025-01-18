@@ -1,0 +1,159 @@
+.main {
+    width: 100%;
+    height: 9em;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    padding: 20px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 6em;
+    height: 6em;
+    border: .25em solid rgba(0, 0, 0, 0);
+    border-radius: 50%;
+    border-color: #000;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.lineLeft {
+    position: relative;
+    width: 55px;
+    height: 5px;
+    background-color: #F27474;
+    border-radius: 12px;
+    transform: rotate(45deg);
+}
+
+.lineRight {
+    position: relative;
+    bottom: 5px;
+    width: 55px;
+    height: 5px;
+    background-color: #F27474;
+    border-radius: 12px;
+    transform: rotate(-45deg);
+}
+
+.lineTip {
+    position: relative;
+    top: 10px;
+    right: 5px;
+    width: 30px;
+    height: 5px;
+    border-radius: 12px 0px 0px 12px;
+    background-color: #a5dc86;
+    border: solid 1px #a5dc86;
+    transform: rotate(45deg)
+}
+
+.lineLong {
+    position: relative;
+    top: -2px;
+    left: 10px;
+    width: 50px;
+    height: 5px;
+    border-radius: 0px 12px 12px 10px;
+    background-color: #a5dc86;
+    border: solid 1px #a5dc86;
+    transform: rotate(-50deg)
+}
+
+.question {
+    position: relative;
+    top: -5px;
+    font-size: 3.50em;
+    color: #87adbd;
+    animation-name: rotate;
+    animation-duration: 0.8s;
+    animation-iteration-count: 1;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.erro {
+    color: #F27474;
+    animation-name: up;
+    animation-duration: 0.8s;
+    animation-iteration-count: 1;
+    font-size: 3.65em;
+}
+
+.success {
+    color: #a5dc86;
+    animation-name: up;
+    animation-duration: 0.8s;
+    animation-iteration-count: 1;
+    font-size: 3.65em;
+}
+
+.warning {
+    position: relative;
+    top: -5px;
+    color: #f8bb86;
+    animation-name: bounce;
+    animation-duration: 0.8s;
+    animation-iteration-count: 1;
+    font-size: 3.60em;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotateY(-360deg);
+    }
+
+    100% {
+        transform: rotateY(0);
+    }
+}
+
+@keyframes up {
+    0% {
+        margin-top: 1.625em;
+        transform: scale(0.4);
+        opacity: 0;
+    }
+
+    50% {
+        margin-top: 1.625em;
+        transform: scale(0.4);
+        opacity: 0;
+    }
+
+    80% {
+        margin-top: -0.375em;
+        transform: scale(1.15);
+    }
+
+    100% {
+        margin-top: 0;
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes bounce {
+    0% {
+        transform: rotateZ(45deg);
+        opacity: 0;
+    }
+    25% {
+        transform: rotateZ(-25deg);
+        opacity: .4;
+    }
+    50% {
+        transform: rotateZ(15deg);
+        opacity: .8;
+    }
+    75% {
+        transform: rotateZ(-5deg);
+        opacity: 1;
+    }
+    100% {
+        transform: rotateX(0);
+        opacity: 1;
+    }
+}

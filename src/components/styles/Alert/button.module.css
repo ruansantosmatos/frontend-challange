@@ -1,0 +1,18 @@
+.button {
+    color: #ffffffff;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    word-break: break-all;
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    text-transform: capitalize;
+    transition: all ease-in-out 0.5ms;
+}
+
+.button:hover {
+    opacity: 0.8;
+}
