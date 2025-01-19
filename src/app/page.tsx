@@ -1,17 +1,23 @@
 'use client'
 import * as yup from 'yup'
 import styles from "../styles/home.module.css";
+import { v4 } from 'uuid';
 import { FormEvent, useState } from "react";
-import { ILogin } from '@/types/Home';
+import { ILogin, ISession } from '@/types/Home';
 import { ServicesHome } from '@/api/services';
 import { IDataSingIn } from '@/api/services/Home/SingIn';
 import { Alert } from '@/components/Alert';
+import { useRouter } from 'next/navigation'
+import { storageSession } from './action';
 
 export default function Home() {
 
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const [alertOpen, setAlertOpen] = useState<boolean>(false)
+  const [alertMessage, setAlertMessage] = useState<string>('')
+  const [disableBtn, setDisableBtn] = useState<boolean>(false)
+  const router = useRouter()
 
   function onchangeEmail(email: string) {
     setEmail(email)
@@ -21,8 +27,14 @@ export default function Home() {
     setPassword(password)
   }
 
-  function closeAlert(){
+  function openAlert() {
+    setAlertOpen(true)
+    setAlertMessage('email ou senha inválido.')
+  }
+
+  function closeAlert() {
     setAlertOpen(false)
+    setDisableBtn(false)
   }
 
   function alertInvalidFields(id: string, message: string) {
@@ -64,13 +76,23 @@ export default function Home() {
     }
   }
 
+  async function storageData({ id_user, token }: ISession) {
+    setDisableBtn(false)
+    await storageSession({ id_user, token })
+    router.push('/dashboard')
+  }
+
   async function singIn() {
     try {
       const data = await ServicesHome.SingIn(email, password) as IDataSingIn[]
-      data.length > 0 ? alert('passou') : setAlertOpen(true)
+      const token = v4()
+
+      setDisableBtn(true)
+      data.length > 0 ? storageData({ 'id_user': data[0].id, 'token': token }) : openAlert()
     }
     catch (error) {
-      alert(error)
+      const message = 'ocorreu um erro inesperado. Tente novamente!'
+      setAlertMessage(message)
     }
   }
 
@@ -79,10 +101,10 @@ export default function Home() {
       <Alert.Root isOpen={alertOpen}>
         <Alert.Icon type='error' />
         <Alert.Title>
-          <p>Oops!</p>  
+          <p>Oops!</p>
         </Alert.Title>
         <Alert.Message>
-          email ou senha inválidos
+          {alertMessage}
         </Alert.Message>
         <Alert.Actions>
           <Alert.Button onClick={closeAlert}>
@@ -135,7 +157,11 @@ export default function Home() {
               </a>
             </div>
             <div className={styles.containerBtn}>
-              <button type="submit" className={styles.btnSubmit}>
+              <button
+                type="submit"
+                className={styles.btnSubmit}
+                disabled={disableBtn}
+              >
                 Entrar
               </button>
             </div>

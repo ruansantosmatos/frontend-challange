@@ -10,10 +10,16 @@ const Colors = {
     default: '#7066e0'
 }
 
-export function Button({ children, onClick, color = 'default'}: ButtonProps) {
+export function Button({ 
+    children, 
+    onClick, 
+    disabled,
+    color = 'default', 
+}: ButtonProps) {
     return (
         <button
             onClick={onClick}
+            disabled={disabled}
             className={styles.button}
             style={{ backgroundColor: Colors[color] }}
         >

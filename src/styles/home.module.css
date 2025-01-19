@@ -155,8 +155,6 @@
     text-decoration: underline;
 }
 
-
-
 @media (max-width: 576px) {
     .container {
         padding: 0px 20px 0px 20px;

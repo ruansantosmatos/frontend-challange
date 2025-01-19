@@ -1,6 +1,7 @@
 import { BASE_URL, headers } from "@/api/config";
 
 export interface IDataSingIn {
+    id: string,
     email: string,
     password: string
 }

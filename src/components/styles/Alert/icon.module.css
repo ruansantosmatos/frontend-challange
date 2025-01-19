@@ -76,7 +76,7 @@
 .erro {
     color: #F27474;
     animation-name: up;
-    animation-duration: 0.8s;
+    animation-duration: 0.6s;
     animation-iteration-count: 1;
     font-size: 3.65em;
 }
@@ -84,7 +84,7 @@
 .success {
     color: #a5dc86;
     animation-name: up;
-    animation-duration: 0.8s;
+    animation-duration: 0.6s;
     animation-iteration-count: 1;
     font-size: 3.65em;
 }
