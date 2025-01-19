@@ -4,7 +4,7 @@ import styles from '@/styles/layout-modules.module.css'
 import { useRouter } from 'next/navigation';
 import { clearStorageSession } from '../action';
 import { Avatar } from '@/components/Avatar';
-import ImgAvatar from '../../../public/avatar.png'
+import ImgAvatar from '../../../public/user.png'
 
 export default function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
 

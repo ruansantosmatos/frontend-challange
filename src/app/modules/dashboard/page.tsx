@@ -1,7 +1,7 @@
-'use client'
 
-export default function Dashboard2(){
-    return(
-        <h1>teste</h1>
+
+export default function Dashboard() {
+    return (
+        <p>aaa</p>
     );
 }

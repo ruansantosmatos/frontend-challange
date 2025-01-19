@@ -1,6 +1,18 @@
+.containerAvatar {
+    width: 50;
+    height: 50;
+    padding: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50;
+    background-color: #eeeeee;
+}
+
 .avatar {
+    width: 80%;
+    height: 80%;
     vertical-align: middle;
-    border-radius: 50%;
     object-fit: cover;
     cursor: pointer;
 }

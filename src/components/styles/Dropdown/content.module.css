@@ -1,6 +1,7 @@
 .dropdownContent {
     display: none;
-    right: 8;
+    top: 40;
+    right: 30;
     z-index: 1;
     padding: 8px 6px;
     min-width: 160px;

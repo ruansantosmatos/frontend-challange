@@ -11,9 +11,9 @@ type AvatarProps = {
     style?: CSSProperties | undefined
 }
 
-export function Avatar({ src, alt = 'Avatar', style, width = 50, height = 50 }: AvatarProps) {
+export function Avatar({ src, alt = 'Avatar', style, width = 60, height = 60 }: AvatarProps) {
     return (
-        <div>
+        <div className={styles.containerAvatar}>
             <Image
                 src={src}
                 alt={alt}
