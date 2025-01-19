@@ -1,0 +1,21 @@
+.root {
+    width: 100vw;
+    height: 100vh;
+}
+
+.container {
+    width: 100vw;
+    height: 3.75em;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding-right: 2em;
+    background-color: #dede;
+    border-bottom: solid 1px #eeee;
+}
+
+.content {
+    width: 100vw;
+    height: 100vh;
+    background-color: #f00;
+}

@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function middleware(request: NextRequest) {
-    const privateRoutes = ['/dashboard']
+    const privateRoutes = ['/modules/dashboard']
     const cookie = await cookies()
 
     const token = cookie.get('token')
@@ -12,14 +12,10 @@ export async function middleware(request: NextRequest) {
     if (isPrivateRoute && !token) {
         return NextResponse.redirect(new URL('/', request.url))
     }
-
-    if(!isPrivateRoute && token){
-        return NextResponse.redirect(new URL('/dashboard', request.url))
-    }
-
-    NextResponse.next()
+ 
+    return NextResponse.next()
 }
 
 export const config = {
-    matcher:  '/:path*'
+    matcher: '/:path*'
 }

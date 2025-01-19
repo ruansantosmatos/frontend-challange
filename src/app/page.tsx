@@ -79,7 +79,7 @@ export default function Home() {
   async function storageData({ id_user, token }: ISession) {
     setDisableBtn(false)
     await storageSession({ id_user, token })
-    router.push('/dashboard')
+    router.push('/modules/dashboard')
   }
 
   async function singIn() {
