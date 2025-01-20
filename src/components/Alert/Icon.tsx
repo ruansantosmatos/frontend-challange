@@ -1,12 +1,8 @@
 import styles from '../styles/Alert/icon.module.css'
 
-type PropsIcon = {
-    type:
-    | 'warning'
-    | 'error'
-    | 'success'
-    | 'question'
-}
+export type PropsIcon = { type: ErrorTypes }
+
+export type ErrorTypes = | 'warning' | 'error' | 'success' | 'question'
 
 const Colors = {
     error: '#F27474',
@@ -15,12 +11,12 @@ const Colors = {
     question: '#87adbd'
 }
 
-export function Icon({ type }: PropsIcon) {
+export function Icon({ type = 'question' }: PropsIcon) {
 
     return (
         <header className={styles.main}>
-            <div 
-                className={styles.container} 
+            <div
+                className={styles.container}
                 style={{ borderColor: Colors[type] }}
             >
                 {

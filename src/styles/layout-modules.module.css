@@ -10,7 +10,7 @@
     align-items: center;
     justify-content: end;
     padding-right: 2.2em;
-    background-color: rgb(0, 0%, 100%);
+    background-color: #ffffffff;
     border-bottom: solid 0.5px #cccccc;
 }
 
@@ -20,6 +20,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    /* background-color: #f00; */
+    padding: 20px;
 }
 
 @media (max-width: 576px) {
