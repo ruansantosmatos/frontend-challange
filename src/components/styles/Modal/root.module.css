@@ -1,0 +1,57 @@
+.root {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    z-index: 1;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all ease .1s;
+    background-color: rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+}
+
+.closeRoot {
+    transition: all ease 1s;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.content {
+    /* width: 80vw;
+    height: 80vh; */
+    max-width: 100%;
+    display: flex;
+    border-radius: 8px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffffff;
+    animation-name: showAlert;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+}
+
+@keyframes showAlert {
+    0% {
+        transform: scale(0.7);
+    }
+
+    45% {
+        transform: scale(1.05);
+    }
+
+    80% {
+        transform: scale(0.95);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 576px) {
+    .root {
+        padding: 0px 15px 0px 15px;
+    }
+}

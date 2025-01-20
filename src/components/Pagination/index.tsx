@@ -4,13 +4,14 @@ import styles from '@/components/styles/Pagination/pagination.module.css'
 type PaginationProps = {
     currentPage: number,
     totalPages: number,
+    totalItems: number,
     onPageChange: (page: number) => void,
     handleRecordsPerPageChange: (limit: number) => void
 }
 
 export function Pagination({
-    currentPage, totalPages, onPageChange,
-    handleRecordsPerPageChange
+    currentPage, totalPages, totalItems,
+    onPageChange, handleRecordsPerPageChange
 }: PaginationProps) {
 
     const [recordsPerPage, setRecordsPerPage] = useState(10)
@@ -32,6 +33,9 @@ export function Pagination({
 
     return (
         <div className={styles.pagination}>
+            <div className={styles.paginationInfo}>
+                <h2>Total de {totalItems} Registros</h2>
+            </div>
             <div className={styles.paginationInfo}>
                 <h2>Página {currentPage} de {totalPages}</h2>
             </div>

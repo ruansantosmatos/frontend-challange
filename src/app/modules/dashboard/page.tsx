@@ -17,6 +17,8 @@ import { ErrorTypes } from "@/components/Alert/Icon";
 import { Barcode } from "@/components/Barcorde";
 import { ActionsButtonTable, IEquipamentsInfo, TRequestEquipaments } from "@/types/Dashboard";
 import { IRequestByField } from "@/api/services/Dashboard/GetEquipamentByField";
+import { FormEquipament } from "@/components/modules/Dashboard/FormEquipament";
+import { Modal } from "@/components/Modal";
 
 export default function Dashboard() {
 
@@ -35,6 +37,7 @@ export default function Dashboard() {
     const [filter, setFilter] = useState<string>('')
     const [placeholder, setPlaceHolder] = useState<string>('')
     const [value, setValue] = useState<string>('')
+    const [openForm, setOpenForm] = useState<boolean>(false)
 
     useEffect(() => { loadScreen() }, [])
 
@@ -209,9 +212,30 @@ export default function Dashboard() {
         )
     }
 
+    function ActiveFormRegister() {
+        return (
+          <Modal.Root isOpen={openForm}>
+            <Modal.Title>Registrar Equipamento</Modal.Title>
+                <FormEquipament />
+            <Modal.Actions>
+              <Modal.Button color={'cancel'} onClick={() => setOpenForm(false)}>
+                Cancelar
+              </Modal.Button>
+              <Modal.Button color="success">
+                Registrar
+              </Modal.Button>
+            </Modal.Actions>
+          </Modal.Root>
+        )
+      }
+    
+
     return (
         <>
             {< ActivateAlert />}
+            
+            {<ActiveFormRegister/>}
+
             <div className={styles.root}>
                 <div className={styles.containerActions}>
                     <div className={styles.containerSearch}>
@@ -242,7 +266,7 @@ export default function Dashboard() {
                             <option value="descricao">Descrição</option>
                             <option value="marca">Marca</option>
                         </select>
-                        <button className={styles.btn}>
+                        <button onClick={() => setOpenForm(true)} className={styles.btn}>
                             <Image src={AddImage} alt={"plus-circle"} width={18} height={18} />
                             <span>Adicionar</span>
                         </button>
@@ -294,6 +318,7 @@ export default function Dashboard() {
                     <Pagination
                         currentPage={currentPage}
                         totalPages={totalPages}
+                        totalItems={totalItems}
                         onPageChange={(page) => getEquipaments(page, limit)}
                         handleRecordsPerPageChange={(limit) => handleLimitPage(limit)}
                     />
