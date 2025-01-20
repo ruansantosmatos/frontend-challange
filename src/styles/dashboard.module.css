@@ -44,7 +44,7 @@
     height: 100px;
     text-align: left;
     padding: 30px 0px 30px 40px;
-    word-break:keep-all;
+    word-break: keep-all;
 }
 
 .itemsHidden {
@@ -63,6 +63,110 @@
     margin-right: 25px;
 }
 
+.containerActions {
+    width: 90%;
+    height: 4em;
+    display: flex;
+}
+
+.txtInputSearch {
+    color: #000;
+    width: 70%;
+    height: 40px;
+    font-size: 14px;
+    border: solid 1px #dedede;
+    border-radius: 6px;
+    padding: 0px 10px 0px 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #ffffffff;
+}
+
+.txtInputSearch:focus {
+    outline: none;
+    border: solid 1.5px #000;
+    transition: all ease-in-out 0.5ms;
+}
+
+.containerSearch {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    padding: 0px 5px;
+    gap: 8;
+}
+
+.containerActionsTable {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding: 0px 5px 0px 0px;
+    gap: 1em;
+}
+
+.btn {
+    width: 9em;
+    height: 35px;
+    border: solid 1px #18181b;
+    border-radius: 6px;
+    background-color: #18181b;
+    color: #ffffffff;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3ms;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.btn:hover {
+    background-color: rgba(24, 24, 27, 0.9);
+}
+
+.btn:disabled {
+    background-color: rgba(24, 24, 27, 0.6);
+    border: none;
+    cursor: not-allowed;
+}
+
+.select {
+    width: 8em;
+    height: 38px;
+    padding: 0px 10px;
+    font-size: 14px;
+    color: #333;
+    background-color: #ffff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    font-family: Arial, Helvetica, sans-serif;
+    transition: border-color 0.3ms ease, box-shadow 0.3s ease;
+}
+
+.select:focus {
+    border-color: #18181be6;
+    outline: none;
+}
+
+.select:active {
+    background-color: #f7f7f7;
+}
+
+.option {
+    padding: 8px;
+    background-color: #fff;
+    color: #333;
+}
+
 @media (max-width: 576px) {
     .headerTitleHidden {
         display: none;
@@ -74,5 +178,22 @@
 
     .actionsButton {
         margin-right: 5px;
+    }
+
+    .btn span {
+        display: none;
+    }
+
+    .btn {
+        width: 4em;
+        gap: 0;
+    }
+
+    .containerActionsTable {
+        gap: 0.5em;
+    }
+
+    .txtInputSearch {
+        width: 80%;
     }
 }

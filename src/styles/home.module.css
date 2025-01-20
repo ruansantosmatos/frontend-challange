@@ -129,11 +129,13 @@
 }
 
 .btnSubmit:hover {
-    background-color: rgba(24, 24, 27, 0.9);
+    background-color: rgba(24, 24, 27, 0.6);
+    border: none;
 }
 
 .btnSubmit:disabled {
     background-color: rgba(24, 24, 27, 0.5);
+    border: none;
 }
 
 .containerNewAccount {

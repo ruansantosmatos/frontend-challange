@@ -1,4 +1,4 @@
-export type ActionsButtonTable = 'edit' | 'delete' | 'print' | 'default'
+export type ActionsButtonTable = 'edit' | 'delete' | 'default'
 
 export type TRequestEquipaments = {
     data: IEquipamentsInfo[],
