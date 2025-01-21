@@ -1,36 +1,109 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Desafio Técnico - Áurea Phidital  
 
-## Getting Started
+Software desenvolvido com o objetivo de recriar os requesitos técnicos estipulados pela instituição Áurea Phidital no proceso seletivo
+de desenvolvedor Front-End. Assim como, desenvolver funcionalidade de manipulação de dados, criação de informações, autenticação, dentre outras. 
 
-First, run the development server:
+## Conceitos Aplicados no Projeto:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Login
+- Logout
+- Registro de informações
+- Atualização de dados
+- Exclusão de Registros
+- Seleção de informações
+- Integração de API
+- Manipulação de Sessão
+- Designer Patterns Componentes
+- Responsividade
+- UI/UX
+
+## Funcionalidades
+
+- Permite o usuário efetuar login.
+- Permite o usuário efetuar logout
+- Permite a criação de uma novo perfil do usuário.
+- Permite Registrar um novo equipamento
+- Permite Excluir determinado equipamento
+- Permite Atualizar informações de equipamento
+- Permite Listar todas as informações registradas
+- Permite Filtrar determinado equipamento
+
+## Tecnologias Utilizadas:
+
+- NextJs
+- Typescript
+- Yup
+- Json-Server
+- Chakra-ui
+
+## Requisitos
+
+Para visualizar e modificar o projeto, você precisará de:
+
+- Um navegador web moderno (Chrome, Firefox, Edge, etc.).
+- Um editor de texto ou IDE para edição de código (VSCode, Sublime Text, etc.).
+- Sistema operacional MacOS, Windows ou Linux.
+- Node.js 18.18 ou maior.
+
+## Como Usar
+
+1. **Inicie um projeto Next**:
+    ```bash
+    npx create-next-app@latest <NameApp>
+    ```
+
+2. **Clone este repositório**:
+    ```bash
+    git clone https://github.com/ruansantosmatos/frontend-challange.git
+    ```
+    
+3. **Inicie o prompt de comando no diretório (pasta) do projeto e execute o comando**:
+    ```bash
+    npm run dev
+    ```
+
+4. **Inicie um novo prompt de comando no diretório (pasta) do projeto e execute o comando**:
+    ```bash
+    npm run database
+    ```
+
+5. **NOTA**:
+    - Torna-se necessário a execução de todas as diretrizes para a execução correta do projeto.
+    a utilização dos scripts descritos respectivamente nas etapas 3 e 4 permite que o projeto inicialize
+    o servidor local e compile as informações do software, assim como, o comando especificado na etapa 4 inicializa
+    a base de dados local, permitindo que todas as funcionalidades possam acessar seus respectivos endpoint.
+
+## Estrutura do Projeto
+
+```plaintext
+├── public                   # Diretório que possui utilitários gerais (icones, imagens, dentre outros).
+
+├── src
+    ├── api                  # Diretório responsável por definir os endpoints da API para consumo.
+        └── config           # Arquivo contendo as configurações da API.
+        └── models           # Tipagem estrutural das entendidades da base de dados.
+    
+    ├── app                  # Diretório principal contendo todas as rotas e páginas da aplicação.
+    
+    ├── components           # Diretório contendo componentes globais e de bibliotecas.
+        └── ui               # Diretório gerado para componentes tailwind CSS da biblioteca Sadcn UI.
+    ├── lib                  # Diretório que possui componente base para a utilização do Sadcn UI.
+    
+    ├── services             # Diretório responsável por conter funções que podem ser utilizadas de maneiras gerais.
+    
+    ├── styles               # Diretório que possui os arquivos de estilos gerais da aplicação.
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Observações
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Para executar o processo de login com a conta google, torna-se necessário a utilização do 
+código das crendenciais de acesso para a aplicação, consulte a documentação oficial:
+[Google Identity](https://developers.google.com/identity/protocols/oauth2?hl=pt-br)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Contribuições
+Contribuições são bem-vindas! Se você encontrar algum problema ou tiver ideias para melhorias, 
+sinta-se à vontade para enviar um pull request.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Licença
+Este projeto está licenciado sob a Licença MIT.
