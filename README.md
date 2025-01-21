@@ -1,6 +1,6 @@
 # Desafio Técnico - Áurea Phidital  
 
-Software desenvolvido com o objetivo de recriar os requesitos técnicos estipulados pela instituição Áurea Phidital no proceso seletivo
+Software desenvolvido visando recriar os requisitos técnicos estipulados pela instituição Áurea Phidital no processo seletivo
 de desenvolvedor Front-End. Assim como, desenvolver funcionalidade de manipulação de dados, criação de informações, autenticação, responsividade,
 roteamento de páginas, dentre outros aspectos técnicos. 
 
@@ -22,7 +22,7 @@ roteamento de páginas, dentre outros aspectos técnicos.
 
 - Permite o usuário efetuar login.
 - Permite o usuário efetuar logout
-- Permite a criação de uma novo perfil do usuário.
+- Permite a criação de um novo perfil do usuário.
 - Permite Registrar um novo equipamento
 - Permite Excluir determinado equipamento
 - Permite Atualizar informações de equipamento
@@ -45,7 +45,7 @@ roteamento de páginas, dentre outros aspectos técnicos.
 - Edite o produto adicionado ou qualquer outro registro
 - Delete registros diversos
 - Pesquise registros utilizando filtros disponíveis
-- Executar logout selecionando o icone localizado na parte superior direita e selecionando a opção "sair"
+- Executar logout selecionando o ícone localizado na parte superior direita e selecionando a opção "sair"
 
 ## Acesso Padrão
 
@@ -84,10 +84,9 @@ Para visualizar e modificar o projeto, você precisará de:
     ```
 
 5. **NOTA**: Torna-se necessário a execução de todas as diretrizes para a execução correta do projeto.
-    a utilização dos scripts descritos respectivamente nas etapas 3 e 4 permite que o projeto inicialize
-    o servidor local e compile as informações do software, assim como, o comando especificado na etapa 4 inicializa
-    a base de dados local, permitindo que todas as funcionalidades possam acessar seus respectivos endpoint.
-
+A utilização dos scripts descritos respectivamente nas etapas 3 e 4 permite que o projeto inicialize
+o servidor local e compile as informações do software, assim como, o comando especificado na etapa 4 inicializa
+a base de dados local, permitindo que todas as funcionalidades possam acessar seus respectivos endpoint.
 
 ## Visualização
 
@@ -123,19 +122,20 @@ geradas no prompt de comando após a execução da etapa 3 na sessão anterior.
 ```
 ## Melhorias
 
-1. Adição de mais acessabilidades em funcionalidades de interação com tabelas
-2. Adição de testes unitários para novos e antigos componentes
-3. Melhoria de designer visual
-4. Adição de filtros por data e valor na tabela de equipamentos
-5. Adição de funcionalidade de redefinição de senha
+- Adição de mais acessibilidades em funcionalidades de interação com tabelas
+- Adição de testes unitários para novos e antigos componentes
+- Melhoria de designer visual
+- Adição de filtros por data e valor na tabela de equipamentos
+- Adição de funcionalidade de redefinição de senha
    
 ## Observações
 
-1. A utilização da biblioteca de componentes Chakra-ui teve como finalidade apenas na criação
-do componente de tabela, respeitando as diretrizes estipuladas na documentação técnica
+- A utilização da biblioteca de componentes Chakra-ui teve como finalidade apenas na
+criação do componente de tabela, respeitando as diretrizes estipuladas na documentação técnica.
 
-2. Durante o processo de criação, foram adicionadas novas informações e funcionalidades
-com objetivo de recriar cenários mais próximos a realidade.
+
+- Durante o processo de criação, foram adicionadas novas informações e funcionalidades
+visando recriar cenários mais próximos à realidade.
 
 ## Licença
 Este projeto está licenciado sob a Licença MIT.
