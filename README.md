@@ -73,25 +73,31 @@ Para visualizar e modificar o projeto, você precisará de:
     o servidor local e compile as informações do software, assim como, o comando especificado na etapa 4 inicializa
     a base de dados local, permitindo que todas as funcionalidades possam acessar seus respectivos endpoint.
 
+---
+
 ## Estrutura do Projeto
 
 ```plaintext
 ├── public                   # Diretório que possui utilitários gerais (icones, imagens, dentre outros).
 
 ├── src
-    ├── api                  # Diretório responsável por definir os endpoints da API para consumo.
-        └── config           # Arquivo contendo as configurações da API.
-        └── models           # Tipagem estrutural das entendidades da base de dados.
+    ├── api                  # Diretório responsável por definir os endpoints da API.
+        └── config           # Diretório contendo configurações globais para API (header, endpoint base, porta).
+        └── services         # Diretório responsável por conter os endpoints da API.
     
     ├── app                  # Diretório principal contendo todas as rotas e páginas da aplicação.
+        └── modules          # Diretório responsável no armazenamento de todas as rotas privadas/páginas da aplicação.
+
+    ├── components           # Diretório responsável na organização de componentes globais e específicos utlizados nas páginas.
+        └── styles           # Diretório responsável pelo armazenamento de estilização de componentes globais.
+        └── modules          # Diretório de componentes utilizados em determinada página.
+            └── styles       # Diretório responsável pelo armazenamento de estilização de componentes específicos/páginas
+
+    ├── functions            # Diretório responsável por possuir diversar funções utilitárias como: formatação de valor, geração de código, etc...
     
-    ├── components           # Diretório contendo componentes globais e de bibliotecas.
-        └── ui               # Diretório gerado para componentes tailwind CSS da biblioteca Sadcn UI.
-    ├── lib                  # Diretório que possui componente base para a utilização do Sadcn UI.
-    
-    ├── services             # Diretório responsável por conter funções que podem ser utilizadas de maneiras gerais.
-    
-    ├── styles               # Diretório que possui os arquivos de estilos gerais da aplicação.
+    ├── styles               # Diretório que possui os arquivos de estilos das páginas publicas, privadas, layouts e templates.
+
+    ├── types                # Diretório responsável por possuir tipagem de dados utilizada nas páginas
 
 ```
 
