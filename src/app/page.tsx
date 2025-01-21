@@ -9,6 +9,7 @@ import { IDataSingIn } from '@/api/services/Home/SingIn';
 import { Alert } from '@/components/Alert';
 import { useRouter } from 'next/navigation'
 import { storageSession } from './action';
+import Link from 'next/link';
 
 export default function Home() {
 
@@ -138,7 +139,9 @@ export default function Home() {
                 onChange={(e) => onchangeEmail(e.target.value)}
                 onFocus={() => disableAlertFields('alert-email')}
               />
-              <span id="alert-email" className={styles.alertText}></span>
+              <div className={styles.alertContainer}>
+                <span id="alert-email" className={styles.alertText}></span>
+              </div>
             </div>
             <div className={styles.inputArea}>
               <label htmlFor="password">Senha</label>
@@ -149,12 +152,9 @@ export default function Home() {
                 onChange={(e) => onChangePassword(e.target.value)}
                 onFocus={() => disableAlertFields('alert-password')}
               />
-              <span id="alert-password" className={styles.alertText}></span>
-            </div>
-            <div className={styles.forgetPassword}>
-              <a href="/" target="_self">
-                Esqueceu a senha?
-              </a>
+              <div className={styles.alertContainer}>
+                <span id="alert-password" className={styles.alertText}></span>
+              </div>
             </div>
             <div className={styles.containerBtn}>
               <button
@@ -166,9 +166,9 @@ export default function Home() {
               </button>
             </div>
             <div className={styles.containerNewAccount}>
-              <a href="/" target="_self">
+              <Link href={'/SingUp'}>
                 Não possui conta? Registrar-se
-              </a>
+              </Link>
             </div>
           </form>
         </section>

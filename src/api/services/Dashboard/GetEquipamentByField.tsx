@@ -11,7 +11,6 @@ export type IRequestByField = {
 export async function GetEquipamentByField({ field, value }: IRequestByField): Promise<IEquipamentsInfo[] | Error> {
     try {
         const url = `${BASE_URL}/equipaments?${field}=${value.trim()}`
-        console.log('url', url)
         const request = await fetch(url, { headers: headers })
 
         const data = request.json().then(info => { return info })

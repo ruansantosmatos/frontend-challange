@@ -223,9 +223,9 @@ export function FormEquipament({
       const schema: yup.ObjectSchema<Omit<IFields, 'id'>> = yup.object().shape(
         {
           codigo_ean: yup.string().required().min(13).max(13),
-          descricao: yup.string().required().min(5).max(80),
+          descricao: yup.string().required().max(80),
           valor: yup.number().required().moreThan(0),
-          marca: yup.string().required().min(4).max(30),
+          marca: yup.string().required().max(30),
           aquisicao: yup.string().required()
         }
       )

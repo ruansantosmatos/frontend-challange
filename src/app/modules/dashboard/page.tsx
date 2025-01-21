@@ -38,6 +38,7 @@ export default function Dashboard() {
     const [value, setValue] = useState<string>('')
     const [openForm, setOpenForm] = useState<boolean>(false)
     const [editInfo, setEditInfo] = useState<boolean>(false)
+    const [searchActive, setSearchActive] = useState<boolean>(false)
 
     useEffect(() => { loadScreen() }, [])
 
@@ -52,7 +53,11 @@ export default function Dashboard() {
 
     function handleOnChangeTxt(value: string) {
         setValue(value.toUpperCase())
-        value.length == 0 && getEquipaments()
+
+        if (value.length) {
+            setSearchActive(false)
+            getEquipaments()
+        }
     }
 
     function handleCloseForm() {
@@ -71,7 +76,7 @@ export default function Dashboard() {
         setOpenForm(true)
     }
 
-    function formatMoneyInput(value:number) {
+    function formatMoneyInput(value: number) {
         const formatMoney = new Intl.NumberFormat('pt-Br', { style: 'currency', currency: 'BRL', })
         const newValue = formatMoney.format(value)
         return newValue
@@ -99,6 +104,7 @@ export default function Dashboard() {
         setAlertOpen(false)
         setActionsButton('default')
         getEquipaments()
+        setSearchActive(false)
     }
 
     function handleLimitPage(value: number) {
@@ -136,6 +142,7 @@ export default function Dashboard() {
 
             setItems(data)
             setTotalItems(data.length)
+            setSearchActive(true)
 
             if (data.length == 0) {
                 setTitleAlert('Atenção!')
@@ -302,34 +309,34 @@ export default function Dashboard() {
                         </Table.Header>
                         <Table.Body>
                             {
-                                items.length === 0 ?
-                                <Table.Row>
-                                    <Table.Cell>REGISTRE NOVOS EQUIPAMENTOS!</Table.Cell>
-                                </Table.Row>
-                                :
-                                items.map((item, index) => (
-                                    <Table.Row key={index}>
-                                        <Table.Cell className={styles.items}>{item.codigo_ean}</Table.Cell>
-                                        <Table.Cell className={styles.items}>{item.descricao}</Table.Cell>
-
-                                        <Table.Cell className={styles.items}>{formatMoneyInput(item.valor)}</Table.Cell>
-                                        <Table.Cell className={styles.itemsHidden}>{item.marca}</Table.Cell>
-                                        
-                                        <Table.Cell className={styles.itemsHidden}>{formatDateBRL(item.aquisicao)}</Table.Cell>
-                                        
-                                        <Table.Cell className={styles.items}>
-                                            <Barcode value={item.codigo_ean} style={styles.actionsButton}>
-                                                <Image width={22} height={22} src={PrintImage} alt={"print"} />
-                                            </Barcode>
-                                            <button className={styles.actionsButton} onClick={() => editInfoEquipament(item.id)}>
-                                                <Image width={22} height={22} src={EditImage} alt={"edit"} />
-                                            </button>
-                                            <button className={styles.actionsButton} onClick={() => showAlertDelete(item.id, item.codigo_ean)}>
-                                                <Image width={22} height={22} src={TrashImage} alt={"trash"} />
-                                            </button>
-                                        </Table.Cell>
+                                items.length == 0 && !searchActive ?
+                                    <Table.Row>
+                                        <Table.Cell>REGISTRE NOVOS EQUIPAMENTOS!</Table.Cell>
                                     </Table.Row>
-                                ))}
+                                    :
+                                    items.map((item, index) => (
+                                        <Table.Row key={index}>
+                                            <Table.Cell className={styles.items}>{item.codigo_ean}</Table.Cell>
+                                            <Table.Cell className={styles.items}>{item.descricao}</Table.Cell>
+
+                                            <Table.Cell className={styles.items}>{formatMoneyInput(item.valor)}</Table.Cell>
+                                            <Table.Cell className={styles.itemsHidden}>{item.marca}</Table.Cell>
+
+                                            <Table.Cell className={styles.itemsHidden}>{formatDateBRL(item.aquisicao)}</Table.Cell>
+
+                                            <Table.Cell className={styles.items}>
+                                                <Barcode value={item.codigo_ean} style={styles.actionsButton}>
+                                                    <Image width={22} height={22} src={PrintImage} alt={"print"} />
+                                                </Barcode>
+                                                <button className={styles.actionsButton} onClick={() => editInfoEquipament(item.id)}>
+                                                    <Image width={22} height={22} src={EditImage} alt={"edit"} />
+                                                </button>
+                                                <button className={styles.actionsButton} onClick={() => showAlertDelete(item.id, item.codigo_ean)}>
+                                                    <Image width={22} height={22} src={TrashImage} alt={"trash"} />
+                                                </button>
+                                            </Table.Cell>
+                                        </Table.Row>
+                                    ))}
                         </Table.Body>
                     </Table.Root>
                 </Table.ScrollArea>

@@ -9,13 +9,16 @@
 }
 
 .container {
-    min-width: 400px;
-    height: 400px;
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: 550px;
+    gap: 10;
 }
 
 .header {
     width: 100%;
-    height: 25%;
+    height: 15%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -36,8 +39,12 @@
 
 .form {
     width: 100%;
-    height: 75%;
-    padding-top: 10px;
+    height: 85%;
+    padding: 20px 0px;
+    margin-top: 20px;
+    border: solid 2px #eeee;
+    border-radius: 10px;
+    box-shadow: 10px 5px 10px #ffff;
 }
 
 .inputArea {
@@ -67,7 +74,7 @@
 .txtInput {
     color: #000;
     width: 100%;
-    height: 40px;
+    height: 45px;
     font-size: 14px;
     border: solid 1px #dedede;
     border-radius: 6px;
@@ -140,8 +147,9 @@
 }
 
 .btnSubmit:disabled {
-    background-color: rgba(24, 24, 27, 0.5);
+    background-color: rgba(24, 24, 27, 0.6);
     border: none;
+    cursor: not-allowed;
 }
 
 .containerNewAccount {
