@@ -10,7 +10,7 @@ export async function DeleteEquipaments(id:number, code: string): Promise<string
             throw new Error(`Erro no processo de exclusão! Status: ${request.status}, Mensagem: ${errorText}`);
         }
 
-        return `equipamento ${code} excluido!`
+        return `equipamento ${code} excluido`
     }
     catch (error) {
         throw error

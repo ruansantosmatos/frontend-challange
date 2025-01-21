@@ -1,22 +1,23 @@
 import { BASE_URL, headers } from "@/api/config";
 import { IFields } from "@/components/modules/Dashboard/FormEquipament";
 
-export async function CreateEquipament(data: IFields): Promise<string | Error> {
+export async function UdpateEquipament(data: IFields): Promise<string | Error> {
     try {
-        const url = `${BASE_URL}/equipaments`
+        const id = data.id
+        const url = `${BASE_URL}/equipaments/${id}`
         
         const request = await fetch(url, { 
             headers: headers, 
-            method: "POST",
+            method: "PATCH",
             body: JSON.stringify(data)
         })
 
         if (!request.ok) {
             const errorText = await request.text();
-            throw new Error(`Erro no processo de registro! Status: ${request.status}, Mensagem: ${errorText}`);
+            throw new Error(`Erro no processo de atualização! Status: ${request.status}, Mensagem: ${errorText}`);
         }
 
-        return `equipamento registrado`
+        return `informações atualizadas`
     }
     catch (error) {
         throw error

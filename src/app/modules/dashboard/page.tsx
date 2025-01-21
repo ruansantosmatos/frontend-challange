@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { ServicesDashboard } from "@/api/services";
 import { Pagination } from "@/components/Pagination";
 import { Alert } from "@/components/Alert";
-import { formatMoney } from "@/functions/formatMoney";
+import { formatMoneyBRL } from "@/functions/formatMoney";
 import { formatDateBRL } from "@/functions/formatDateBRL";
 import { ErrorTypes } from "@/components/Alert/Icon";
 import { Barcode } from "@/components/Barcorde";
@@ -51,7 +51,7 @@ export default function Dashboard() {
     }
 
     function handleOnChangeTxt(value: string) {
-        setValue(value)
+        setValue(value.toUpperCase())
         value.length == 0 && getEquipaments()
     }
 
@@ -59,17 +59,24 @@ export default function Dashboard() {
         setOpenForm(false)
     }
 
-    function handleCloseFormEdit(){
+    function handleCloseFormEdit() {
         setIdEquipament(0)
         setEditInfo(false)
         setOpenForm(false)
     }
 
-    function editInfoEquipament(id:number){
+    function editInfoEquipament(id: number) {
         setIdEquipament(id)
         setEditInfo(true)
         setOpenForm(true)
     }
+
+    function formatMoneyInput(value:number) {
+        const formatMoney = new Intl.NumberFormat('pt-Br', { style: 'currency', currency: 'BRL', })
+        const newValue = formatMoney.format(value)
+        return newValue
+    }
+
 
     function handleSelectFilter(filter: string) {
         setFilter(filter)
@@ -233,12 +240,12 @@ export default function Dashboard() {
             {< ActivateAlert />}
 
             {
-                <FormEquipament 
-                    isOpen={openForm} 
+                <FormEquipament
+                    isOpen={openForm}
                     editInfo={editInfo}
                     idEquipament={idEquipament.toString()}
                     reloadScreen={getEquipaments}
-                    handleCloseForm={handleCloseForm} 
+                    handleCloseForm={handleCloseForm}
                     handleCloseFormEdit={handleCloseFormEdit}
                 />
             }
@@ -294,30 +301,35 @@ export default function Dashboard() {
                             </Table.Row>
                         </Table.Header>
                         <Table.Body>
-                            {items.map((item, index) => (
-                                <Table.Row key={index}>
-                                    <Table.Cell className={styles.items}>{item.codigo_ean}</Table.Cell>
-                                    <Table.Cell className={styles.items}>{item.descricao}</Table.Cell>
-
-                                    <Table.Cell className={styles.items}>{
-                                        formatMoney({ value: item.valor.toString(), country: 'pt-Br', format: 'BRL' })}
-                                    </Table.Cell>
-
-                                    <Table.Cell className={styles.itemsHidden}>{item.marca}</Table.Cell>
-                                    <Table.Cell className={styles.itemsHidden}>{formatDateBRL(item.data_aquisicao)}</Table.Cell>
-                                    <Table.Cell className={styles.items}>
-                                        <Barcode value={item.codigo_ean} style={styles.actionsButton}>
-                                            <Image width={22} height={22} src={PrintImage} alt={"print"} />
-                                        </Barcode>
-                                        <button className={styles.actionsButton} onClick={() => editInfoEquipament(item.id)}>
-                                            <Image width={22} height={22} src={EditImage} alt={"edit"} />
-                                        </button>
-                                        <button className={styles.actionsButton} onClick={() => showAlertDelete(item.id, item.codigo_ean)}>
-                                            <Image width={22} height={22} src={TrashImage} alt={"trash"} />
-                                        </button>
-                                    </Table.Cell>
+                            {
+                                items.length === 0 ?
+                                <Table.Row>
+                                    <Table.Cell>REGISTRE NOVOS EQUIPAMENTOS!</Table.Cell>
                                 </Table.Row>
-                            ))}
+                                :
+                                items.map((item, index) => (
+                                    <Table.Row key={index}>
+                                        <Table.Cell className={styles.items}>{item.codigo_ean}</Table.Cell>
+                                        <Table.Cell className={styles.items}>{item.descricao}</Table.Cell>
+
+                                        <Table.Cell className={styles.items}>{formatMoneyInput(item.valor)}</Table.Cell>
+                                        <Table.Cell className={styles.itemsHidden}>{item.marca}</Table.Cell>
+                                        
+                                        <Table.Cell className={styles.itemsHidden}>{formatDateBRL(item.aquisicao)}</Table.Cell>
+                                        
+                                        <Table.Cell className={styles.items}>
+                                            <Barcode value={item.codigo_ean} style={styles.actionsButton}>
+                                                <Image width={22} height={22} src={PrintImage} alt={"print"} />
+                                            </Barcode>
+                                            <button className={styles.actionsButton} onClick={() => editInfoEquipament(item.id)}>
+                                                <Image width={22} height={22} src={EditImage} alt={"edit"} />
+                                            </button>
+                                            <button className={styles.actionsButton} onClick={() => showAlertDelete(item.id, item.codigo_ean)}>
+                                                <Image width={22} height={22} src={TrashImage} alt={"trash"} />
+                                            </button>
+                                        </Table.Cell>
+                                    </Table.Row>
+                                ))}
                         </Table.Body>
                     </Table.Root>
                 </Table.ScrollArea>

@@ -9,6 +9,7 @@ import { ServicesDashboard } from '@/api/services';
 import { IEquipamentsInfo, TRequestEquipaments } from '@/types/Dashboard';
 import { ErrorTypes } from '@/components/Alert/Icon';
 import { Alert } from '@/components/Alert';
+import { formatMoneyBRL } from '@/functions/formatMoney';
 
 export type TAlertFild =
   | 'descricao'
@@ -30,12 +31,12 @@ export interface IFieldsAtributes {
 }
 
 export interface IFields {
-  id: string,
+  id: number,
   codigo_ean: string,
   descricao: string,
   valor: number,
   marca: string,
-  data_aquisicao: string
+  aquisicao: string
 }
 
 export type FormEquipamentProps = {
@@ -47,13 +48,13 @@ export type FormEquipamentProps = {
   handleCloseFormEdit: () => void
 }
 
-export function FormEquipament({ 
-    isOpen, editInfo, idEquipament, 
-    handleCloseForm, reloadScreen, 
-    handleCloseFormEdit
-  }: FormEquipamentProps) {
+export function FormEquipament({
+  isOpen, editInfo, idEquipament,
+  handleCloseForm, reloadScreen,
+  handleCloseFormEdit
+}: FormEquipamentProps) {
 
-  const [id, setId] = useState<string>('0')
+  const [id, setId] = useState<number>(0)
   const [codigo, setCodigo] = useState<string>(generateEAN13Code(generateCode(12)))
   const [descricao, setDescricao] = useState<string>('')
   const [marca, setMarca] = useState<string>('')
@@ -89,8 +90,16 @@ export function FormEquipament({
     setAlertOpen(false)
   }
 
+  function closeFormEquipament() {
+    editInfo ? handleCloseFormEdit() : handleCloseForm()
+  }
+
+  function actionForm(data: IFields) {
+    editInfo ? updateEquipament(data) : createEquipament(data)
+  }
+
   function clearField() {
-    setId('0')
+    setId(0)
     setCodigo(generateEAN13Code(generateCode(12)))
     setDescricao('')
     setMarca('')
@@ -124,7 +133,7 @@ export function FormEquipament({
     try {
       const request = await ServicesDashboard.GetEquipaments(page, limit) as TRequestEquipaments
       const nextId = request.items + 1
-      setId(nextId.toString())
+      setId(nextId)
     }
     catch (error) {
       const message = 'houve uma falha na busca das informações!'
@@ -132,6 +141,7 @@ export function FormEquipament({
       setIconAlert('error')
 
       setMessageAlert(message)
+      clearField()
       handleCloseForm()
       showAlert()
     }
@@ -140,12 +150,13 @@ export function FormEquipament({
   async function getEquipamentById() {
     try {
       const request = await ServicesDashboard.GetEquipamentById(idEquipament) as IEquipamentsInfo[]
+      setId(request[0].id)
       setCodigo(request[0].codigo_ean)
-      
-      setValor(formatMoneyInput(request[0].valor.toString()))
+      setValor(formatMoneyBRL(request[0].valor))
+
       setDescricao(request[0].descricao)
       setMarca(request[0].marca)
-      setAquisicao(request[0].data_aquisicao)
+      setAquisicao(request[0].aquisicao)
     }
     catch (error) {
       const message = 'houve uma falha na busca das informações!'
@@ -153,20 +164,21 @@ export function FormEquipament({
       setIconAlert('error')
 
       setMessageAlert(message)
+      clearField()
       handleCloseForm()
       showAlert()
     }
   }
 
-
   async function createEquipament(data: IFields) {
     try {
-      const request = await ServicesDashboard.CreateEquipaments(data) as string
+      const request = await ServicesDashboard.CreateEquipament(data) as string
       reloadScreen()
       setTitleAlert('Sucesso!')
       setIconAlert('success')
 
       setMessageAlert(request)
+      clearField()
       handleCloseForm()
       showAlert()
     }
@@ -176,6 +188,31 @@ export function FormEquipament({
       setIconAlert('error')
 
       setMessageAlert(message)
+      handleCloseForm()
+      clearField()
+      showAlert()
+    }
+  }
+
+  async function updateEquipament(data: IFields) {
+    try {
+      const request = await ServicesDashboard.UdpateEquipament(data) as string
+      reloadScreen()
+      clearField()
+      setTitleAlert('Sucesso!')
+      setIconAlert('success')
+
+      setMessageAlert(request)
+      handleCloseForm()
+      showAlert()
+    }
+    catch (error) {
+      const message = 'houve uma falha na processo de atualização das informações!'
+      setTitleAlert('Oops!')
+      setIconAlert('error')
+
+      setMessageAlert(message)
+      clearField()
       handleCloseForm()
       showAlert()
     }
@@ -189,18 +226,21 @@ export function FormEquipament({
           descricao: yup.string().required().min(5).max(80),
           valor: yup.number().required().moreThan(0),
           marca: yup.string().required().min(4).max(30),
-          data_aquisicao: yup.string().required()
+          aquisicao: yup.string().required()
         }
       )
 
       const data: IFields = {
-        id: id, codigo_ean: codigo,
-        descricao: descricao, marca: marca,
-        data_aquisicao: aquisicao, valor: parseFloat(valor.split('R$')[1].replace(/,/g, ".")),
+        id: id,
+        codigo_ean: codigo,
+        descricao: descricao.toUpperCase(),
+        marca: marca.toUpperCase(),
+        aquisicao: aquisicao,
+        valor: parseFloat(valor.split('R$')[1].replace(/\./g, "").replace(",", ".")),
       }
 
       schema.validateSync(data, { abortEarly: false })
-      schema.type == 'object' && createEquipament(data)
+      schema.type == 'object' && actionForm(data)
     }
     catch (error) {
       const yupErro = error as yup.ValidationError
@@ -248,6 +288,7 @@ export function FormEquipament({
                 <div className={styles.inputArea} key={index}>
                   <label htmlFor={field.id}>{field.label}</label>
                   <input
+                    id={field.id}
                     type={field.type}
                     name={field.id}
                     value={field.value}
@@ -268,7 +309,7 @@ export function FormEquipament({
         <Modal.Actions>
           <Modal.Button
             color={'cancel'}
-            onClick={() => editInfo ? handleCloseFormEdit() :handleCloseForm()}
+            onClick={() => closeFormEquipament()}
           >
             Cancelar
           </Modal.Button>
@@ -276,7 +317,7 @@ export function FormEquipament({
             color={"success"}
             onClick={() => validationFilds()}
           >
-            Registrar
+            {editInfo ? 'Atualizar' : 'Registrar'}
           </Modal.Button>
         </Modal.Actions>
       </Modal.Root>

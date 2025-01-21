@@ -16,7 +16,7 @@ export interface IEquipamentsInfo {
     descricao: string,
     valor: number,
     marca: string,
-    data_aquisicao: string
+    aquisicao: string
 }
 
 export type PaginationData = {
