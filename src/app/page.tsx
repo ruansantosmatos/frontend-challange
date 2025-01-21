@@ -1,14 +1,13 @@
 'use client'
 import * as yup from 'yup'
 import styles from "../styles/home.module.css";
-import { v4 } from 'uuid';
 import { FormEvent, useState } from "react";
 import { ILogin, ISession } from '@/types/Home';
 import { ServicesHome } from '@/api/services';
 import { IDataSingIn } from '@/api/services/Home/SingIn';
 import { Alert } from '@/components/Alert';
 import { useRouter } from 'next/navigation'
-import { storageSession } from './action';
+import { generateToken, storageSession } from './action';
 import Link from 'next/link';
 
 export default function Home() {
@@ -86,7 +85,7 @@ export default function Home() {
   async function singIn() {
     try {
       const data = await ServicesHome.SingIn(email, password) as IDataSingIn[]
-      const token = v4()
+      const token = await generateToken()
 
       setDisableBtn(true)
       data.length > 0 ? storageData({ 'id_user': data[0].id, 'token': token }) : openAlert()

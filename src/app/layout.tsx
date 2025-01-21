@@ -1,7 +1,7 @@
 'use client'
 import { Provider } from "@/components/ui/provider"
-
 import { Geist, Geist_Mono } from "next/font/google";
+import {} from '@/functions/TranslationYup'
 import "../styles/globals.css";
 
 const geistSans = Geist({

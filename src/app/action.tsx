@@ -1,6 +1,11 @@
 'use server'
 import { ISession } from "@/types/Home";
+import { randomUUID } from "crypto";
 import { cookies } from "next/headers";
+
+export async function generateToken(){
+    return randomUUID()
+}
 
 export async function storageSession({ id_user, token }: ISession){
     const cookiesData = await cookies()

@@ -44,7 +44,12 @@ de desenvolvedor Front-End. Assim como, desenvolver funcionalidade de manipulaç
 - Edite o produto adicionado ou qualquer outro registro
 - Delete registros diversos
 - Pesquise registros utilizando filtros disponíveis
-- Executar logout selecionando o icone localizado na parte superior direita
+- Executar logout selecionando o icone localizado na parte superior direita e selecionando a opção "sair"
+
+## Acesso Padrão
+
+- email: developer@teste.com
+- password: 123456789
 
 ## Requisitos
 
