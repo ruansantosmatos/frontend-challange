@@ -36,6 +36,16 @@ de desenvolvedor Front-End. Assim como, desenvolver funcionalidade de manipulaç
 - Json-Server
 - Chakra-ui
 
+## Fluxo de Interação 
+
+- Crie um novo usuário na página de cadastro
+- Faça login utilizando as informações geradas na página de cadastro
+- Adicione um novo produto
+- Edite o produto adicionado ou qualquer outro registro
+- Delete registros diversos
+- Pesquise registros utilizando filtros disponíveis
+- Executar logout selecionando o icone localizado na parte superior direita
+
 ## Requisitos
 
 Para visualizar e modificar o projeto, você precisará de:
@@ -80,7 +90,6 @@ Para visualizar e modificar o projeto, você precisará de:
 - Caso a porta padrão (3000) esteja sendo utilizada, verifique as informações
 geradas no prompt de comando após a execução da etapa 3 na sessão anterior.
 
-
 ## Estrutura do Projeto
 
 ```plaintext
@@ -106,16 +115,21 @@ geradas no prompt de comando após a execução da etapa 3 na sessão anterior.
     ├── types                # Diretório responsável por possuir tipagem de dados utilizada nas páginas
 
 ```
+## Melhorias
 
+1. Adição de mais acessabilidades em funcionalidades de interação com tabelas
+2. Adição de testes unitários para novos e antigos componentes
+3. Melhoria de designer visual
+4. Adição de filtros por data e valor na tabela de equipamentos
+5. Adição de funcionalidade de redefinição de senha
+   
 ## Observações
 
-1. Para executar o processo de login com a conta google, torna-se necessário a utilização do 
-código das crendenciais de acesso para a aplicação, consulte a documentação oficial:
-[Google Identity](https://developers.google.com/identity/protocols/oauth2?hl=pt-br)
+1. A utilização da biblioteca de componentes Chakra-ui teve como finalidade apenas na criação
+do componente de tabela, respeitando as diretrizes estipuladas na documentação técnica
 
-## Contribuições
-Contribuições são bem-vindas! Se você encontrar algum problema ou tiver ideias para melhorias, 
-sinta-se à vontade para enviar um pull request.
+2. Durante o processo de criação, foram adicionadas novas informações e funcionalidades
+com objetivo de recriar cenários mais próximos a realidade.
 
 ## Licença
 Este projeto está licenciado sob a Licença MIT.
