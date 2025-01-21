@@ -67,13 +67,19 @@ Para visualizar e modificar o projeto, você precisará de:
     npm run database
     ```
 
-5. **NOTA**:
-    - Torna-se necessário a execução de todas as diretrizes para a execução correta do projeto.
+5. **NOTA**: Torna-se necessário a execução de todas as diretrizes para a execução correta do projeto.
     a utilização dos scripts descritos respectivamente nas etapas 3 e 4 permite que o projeto inicialize
     o servidor local e compile as informações do software, assim como, o comando especificado na etapa 4 inicializa
     a base de dados local, permitindo que todas as funcionalidades possam acessar seus respectivos endpoint.
 
----
+
+## Visualização
+
+- Para visualizar a aplicação acesse o endereço [http://localhost:3000](http://localhost:3000)
+
+- Caso a porta padrão (3000) esteja sendo utilizada, verifique as informações
+geradas no prompt de comando após a execução da etapa 3 na sessão anterior.
+
 
 ## Estrutura do Projeto
 
