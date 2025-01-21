@@ -18,7 +18,6 @@ import { Barcode } from "@/components/Barcorde";
 import { ActionsButtonTable, IEquipamentsInfo, TRequestEquipaments } from "@/types/Dashboard";
 import { IRequestByField } from "@/api/services/Dashboard/GetEquipamentByField";
 import { FormEquipament } from "@/components/modules/Dashboard/FormEquipament";
-import { Modal } from "@/components/Modal";
 
 export default function Dashboard() {
 
@@ -38,6 +37,7 @@ export default function Dashboard() {
     const [placeholder, setPlaceHolder] = useState<string>('')
     const [value, setValue] = useState<string>('')
     const [openForm, setOpenForm] = useState<boolean>(false)
+    const [editInfo, setEditInfo] = useState<boolean>(false)
 
     useEffect(() => { loadScreen() }, [])
 
@@ -53,6 +53,22 @@ export default function Dashboard() {
     function handleOnChangeTxt(value: string) {
         setValue(value)
         value.length == 0 && getEquipaments()
+    }
+
+    function handleCloseForm() {
+        setOpenForm(false)
+    }
+
+    function handleCloseFormEdit(){
+        setIdEquipament(0)
+        setEditInfo(false)
+        setOpenForm(false)
+    }
+
+    function editInfoEquipament(id:number){
+        setIdEquipament(id)
+        setEditInfo(true)
+        setOpenForm(true)
     }
 
     function handleSelectFilter(filter: string) {
@@ -114,11 +130,11 @@ export default function Dashboard() {
             setItems(data)
             setTotalItems(data.length)
 
-            if(data.length == 0){
+            if (data.length == 0) {
                 setTitleAlert('Atenção!')
                 setIconAlert('warning')
                 setMessageAlert('Nenhum resultado encontrado!')
-    
+
                 setActionsButton('default')
                 showAlert()
             }
@@ -212,29 +228,20 @@ export default function Dashboard() {
         )
     }
 
-    function ActiveFormRegister() {
-        return (
-          <Modal.Root isOpen={openForm}>
-            <Modal.Title>Registrar Equipamento</Modal.Title>
-                <FormEquipament />
-            <Modal.Actions>
-              <Modal.Button color={'cancel'} onClick={() => setOpenForm(false)}>
-                Cancelar
-              </Modal.Button>
-              <Modal.Button color="success">
-                Registrar
-              </Modal.Button>
-            </Modal.Actions>
-          </Modal.Root>
-        )
-      }
-    
-
     return (
         <>
             {< ActivateAlert />}
-            
-            {<ActiveFormRegister/>}
+
+            {
+                <FormEquipament 
+                    isOpen={openForm} 
+                    editInfo={editInfo}
+                    idEquipament={idEquipament.toString()}
+                    reloadScreen={getEquipaments}
+                    handleCloseForm={handleCloseForm} 
+                    handleCloseFormEdit={handleCloseFormEdit}
+                />
+            }
 
             <div className={styles.root}>
                 <div className={styles.containerActions}>
@@ -245,8 +252,8 @@ export default function Dashboard() {
                             className={styles.txtInputSearch}
                             onChange={(e) => handleOnChangeTxt(e.target.value)}
                         />
-                        <button 
-                            className={styles.btn} 
+                        <button
+                            className={styles.btn}
                             onClick={() => searchEquipament()}
                             disabled={value.length > 0 ? false : true}
                         >
@@ -302,7 +309,7 @@ export default function Dashboard() {
                                         <Barcode value={item.codigo_ean} style={styles.actionsButton}>
                                             <Image width={22} height={22} src={PrintImage} alt={"print"} />
                                         </Barcode>
-                                        <button className={styles.actionsButton}>
+                                        <button className={styles.actionsButton} onClick={() => editInfoEquipament(item.id)}>
                                             <Image width={22} height={22} src={EditImage} alt={"edit"} />
                                         </button>
                                         <button className={styles.actionsButton} onClick={() => showAlertDelete(item.id, item.codigo_ean)}>
