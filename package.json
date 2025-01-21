@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "database": "npx json-server db.json --port 8000",
+    "database": "npx json-server db.json --watch --port 8000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

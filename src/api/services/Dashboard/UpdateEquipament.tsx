@@ -3,8 +3,8 @@ import { IFields } from "@/components/modules/Dashboard/FormEquipament";
 
 export async function UdpateEquipament(data: IFields): Promise<string | Error> {
     try {
-        const id = data.id
-        const url = `${BASE_URL}/equipaments/${id}`
+        const id = data.id.toString()
+        const url = `${BASE_URL}/equipaments/${id.toString()}`
         
         const request = await fetch(url, { 
             headers: headers, 

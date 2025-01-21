@@ -31,7 +31,7 @@ export interface IFieldsAtributes {
 }
 
 export interface IFields {
-  id: number,
+  id: string,
   codigo_ean: string,
   descricao: string,
   valor: number,
@@ -54,7 +54,7 @@ export function FormEquipament({
   handleCloseFormEdit
 }: FormEquipamentProps) {
 
-  const [id, setId] = useState<number>(0)
+  const [id, setId] = useState<string>('0')
   const [codigo, setCodigo] = useState<string>(generateEAN13Code(generateCode(12)))
   const [descricao, setDescricao] = useState<string>('')
   const [marca, setMarca] = useState<string>('')
@@ -99,7 +99,7 @@ export function FormEquipament({
   }
 
   function clearField() {
-    setId(0)
+    setId('0')
     setCodigo(generateEAN13Code(generateCode(12)))
     setDescricao('')
     setMarca('')
@@ -133,7 +133,7 @@ export function FormEquipament({
     try {
       const request = await ServicesDashboard.GetEquipaments(page, limit) as TRequestEquipaments
       const nextId = request.items + 1
-      setId(nextId)
+      setId(nextId.toString())
     }
     catch (error) {
       const message = 'houve uma falha na busca das informações!'
@@ -150,7 +150,7 @@ export function FormEquipament({
   async function getEquipamentById() {
     try {
       const request = await ServicesDashboard.GetEquipamentById(idEquipament) as IEquipamentsInfo[]
-      setId(request[0].id)
+      setId(request[0].id.toString())
       setCodigo(request[0].codigo_ean)
       setValor(formatMoneyBRL(request[0].valor))
 
@@ -203,7 +203,7 @@ export function FormEquipament({
       setIconAlert('success')
 
       setMessageAlert(request)
-      handleCloseForm()
+      handleCloseFormEdit()
       showAlert()
     }
     catch (error) {
@@ -213,7 +213,7 @@ export function FormEquipament({
 
       setMessageAlert(message)
       clearField()
-      handleCloseForm()
+      handleCloseFormEdit()
       showAlert()
     }
   }
