@@ -1,7 +1,8 @@
 # Desafio Técnico - Áurea Phidital  
 
 Software desenvolvido com o objetivo de recriar os requesitos técnicos estipulados pela instituição Áurea Phidital no proceso seletivo
-de desenvolvedor Front-End. Assim como, desenvolver funcionalidade de manipulação de dados, criação de informações, autenticação, dentre outras. 
+de desenvolvedor Front-End. Assim como, desenvolver funcionalidade de manipulação de dados, criação de informações, autenticação, responsividade,
+roteamento de páginas, dentre outros aspectos técnicos. 
 
 ## Conceitos Aplicados no Projeto:
 
